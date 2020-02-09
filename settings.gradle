@@ -1,0 +1,2 @@
+include ':app', ':presentation', ':local', ':domain', ':data'
+rootProject.name='shopping_list'

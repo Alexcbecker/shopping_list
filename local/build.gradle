@@ -1,0 +1,38 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        testInstrumentationRunner rootProject.ext.testInstrumentationRunner
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    def localDependencies = rootProject.ext.localDependencies
+    implementation project(":domain")
+    implementation project(":data")
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation localDependencies.kotlin
+    implementation localDependencies.room
+    implementation localDependencies.rxRoom
+    kapt localDependencies.roomCompiler
+}

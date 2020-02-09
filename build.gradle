@@ -1,0 +1,30 @@
+buildscript {
+    ext.kotlinVersion = '1.3.31'
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlinVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion"
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0"
+    }
+}
+
+apply from: 'dependencies.gradle'
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

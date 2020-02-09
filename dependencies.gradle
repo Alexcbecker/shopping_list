@@ -1,0 +1,82 @@
+ext {
+    // Android
+    minSdkVersion = 21
+    targetSdkVersion = 28
+    androidCompileSdkVersion = 28
+    testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+
+    // Libraries
+    kotlinVersion = '1.3.61'
+
+    androidxVersion = '1.1.0'
+    androidxKtxVersion = '1.1.0'
+    lifecycleVersion = '2.1.0'
+    constraintVersion = '1.1.3'
+    navigationVersion = '2.2.0-rc03'
+    materialVersion = '1.0.0'
+    glideVersion = '4.10.0'
+
+    koinVersion = '2.0.1'
+
+    rxVersion = '2.4.0'
+    rxAndroidVersion = '2.0.2'
+    retrofitVersion = '2.7.0'
+    okHttpVersion = '4.2.2'
+    gsonVersion = '2.8.6'
+    roomVersion = '2.2.3'
+
+    timberVersion = '4.7.1'
+
+    appDependencies = [
+            kotlin                  : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
+            rxKotlin                : "io.reactivex.rxjava2:rxkotlin:${rxVersion}",
+            rxAndroid               : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            appCompat               : "androidx.appcompat:appcompat:$androidxVersion",
+            coreKtx                 : "androidx.core:core-ktx:$androidxKtxVersion",
+            constraintLayout        : "androidx.constraintlayout:constraintlayout:$constraintVersion",
+            materialDesign          : "com.google.android.material:material:$materialVersion",
+            lifecycle               : "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion",
+            lifecycleCompiler       : "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion",
+            navigationRuntime       : "androidx.navigation:navigation-runtime-ktx:$navigationVersion",
+            navigationFragment      : "androidx.navigation:navigation-fragment-ktx:$navigationVersion",
+            navigationUi            : "androidx.navigation:navigation-ui-ktx:$navigationVersion",
+            timber             : "com.jakewharton.timber:timber:${timberVersion}",
+            glide                   : "com.github.bumptech.glide:glide:$glideVersion",
+            glideCompiler           : "com.github.bumptech.glide:compiler:$glideVersion",
+            koin                    : "org.koin:koin-android:$koinVersion",
+            koinScope               : "org.koin:koin-android-scope:$koinVersion",
+            koinViewmodel           : "org.koin:koin-android-viewmodel:$koinVersion",
+            rxRoom                  : "androidx.room:room-rxjava2:$roomVersion",
+            room                    : "androidx.room:room-runtime:$roomVersion",
+            roomCompiler            : "androidx.room:room-compiler:$roomVersion"
+    ]
+
+    presentationDependencies = [
+            kotlin             : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
+            lifecycleViewModel : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion",
+            lifecycleRuntime   : "androidx.lifecycle:lifecycle-runtime:$lifecycleVersion",
+            lifecycleExtensions: "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion",
+            lifecycleCompiler  : "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion",
+            timber             : "com.jakewharton.timber:timber:${timberVersion}",
+            rxKotlin           : "io.reactivex.rxjava2:rxkotlin:${rxVersion}",
+            koin               : "org.koin:koin-android:$koinVersion",
+            koinScope          : "org.koin:koin-android-scope:$koinVersion"
+    ]
+
+    domainDependencies = [
+            kotlin  : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
+            rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxVersion}",
+    ]
+
+    localDependencies = [
+            kotlin      : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
+            rxRoom      : "androidx.room:room-rxjava2:$roomVersion",
+            room        : "androidx.room:room-runtime:$roomVersion",
+            roomCompiler: "androidx.room:room-compiler:$roomVersion"
+    ]
+
+    dataDependencies = [
+            kotlin  : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
+            rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxVersion}"
+    ]
+}

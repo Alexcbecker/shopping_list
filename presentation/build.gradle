@@ -1,0 +1,57 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs'
+
+android {
+    dataBinding {
+        enabled = true
+    }
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    defaultConfig {
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        testInstrumentationRunner rootProject.ext.testInstrumentationRunner
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+
+    configurations {
+        all*.exclude group: 'com.google.guava', module: 'listenablefuture'
+    }
+}
+
+dependencies {
+    def presentationDependencies = rootProject.ext.presentationDependencies
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation presentationDependencies.kotlin
+    implementation presentationDependencies.lifecycleViewModel
+    implementation presentationDependencies.lifecycleRuntime
+    implementation presentationDependencies.lifecycleExtensions
+    runtimeOnly presentationDependencies.lifecycleCompiler
+    implementation presentationDependencies.rxKotlin
+    implementation presentationDependencies.timber
+    implementation presentationDependencies.koin
+    implementation presentationDependencies.koinScope
+
+    implementation project(path: ':domain')
+}
