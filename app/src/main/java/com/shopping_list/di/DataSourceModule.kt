@@ -7,5 +7,4 @@ import org.koin.dsl.module
 val dataSourceModule = module {
 
     single<IShoppingListLocalDataSource> { ShoppingListLocalDataSource(get(), get()) }
-
 }
