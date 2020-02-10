@@ -31,7 +31,7 @@ class GroceryItemsRemoteDataSource(private val groceryItemsService: GroceryItems
 
     private fun mockGroceryItem(index: Int): GroceryItemEntity {
         return GroceryItemEntity(
-            id = index.toString(),
+            id = index,
             name = "Mock item $index",
             price = BigInteger.valueOf(index.toLong())
         )

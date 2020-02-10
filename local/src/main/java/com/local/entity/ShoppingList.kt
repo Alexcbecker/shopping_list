@@ -7,7 +7,7 @@ import java.util.Date
 @Entity
 data class ShoppingList(
     @PrimaryKey(autoGenerate = true)
-    val id: String? = null,
+    val id: Int? = null,
     val date: Date,
     val name: String
 )

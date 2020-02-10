@@ -74,6 +74,12 @@ dependencies {
     implementation appDependencies.koinScope
     implementation appDependencies.koinViewmodel
     implementation appDependencies.rxAndroid
+    implementation appDependencies.okHttp
+    implementation appDependencies.okHttpLoggingInterceptor
+    implementation appDependencies.retrofit
+    implementation appDependencies.retrofitRxJavaAdapter
+    implementation appDependencies.retrofitConvertGson
+    implementation appDependencies.gson
     implementation localDependencies.room
     implementation localDependencies.rxRoom
 

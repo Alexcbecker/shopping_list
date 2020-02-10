@@ -7,7 +7,7 @@ import com.presentation.ShoppingListBinding
 
 fun ShoppingList.fromDomain(): ShoppingListBinding {
     return ShoppingListBinding(
-        id = this.id,
+        id = this.id?.toString(),
         date = this.date,
         name = this.name,
         items = this.items?.map(GroceryItem::fromDomain)
@@ -16,7 +16,7 @@ fun ShoppingList.fromDomain(): ShoppingListBinding {
 
 fun ShoppingListBinding.toDomain(): ShoppingList {
     return ShoppingList(
-        id = this.id,
+        id = this.id?.toInt(),
         date = this.date,
         name = this.name,
         items = this.items?.map(GroceryItemBinding::toDomain)
