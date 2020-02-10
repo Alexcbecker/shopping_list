@@ -1,0 +1,25 @@
+apply plugin: 'kotlin'
+
+dependencies {
+    def remoteDependencies = rootProject.ext.remoteDependencies
+
+    implementation project(":domain")
+    implementation project(":data")
+
+    implementation remoteDependencies.kotlin
+    implementation remoteDependencies.rxKotlin
+    implementation remoteDependencies.okHttp
+    implementation remoteDependencies.okHttpLoggingInterceptor
+    implementation remoteDependencies.retrofit
+    implementation remoteDependencies.gson
+    implementation remoteDependencies.retrofitRxJavaAdapter
+    implementation remoteDependencies.retrofitConvertGson
+}
+
+sourceCompatibility = "8"
+targetCompatibility = "8"
+
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+    test.java.srcDirs += 'src/test/kotlin'
+}

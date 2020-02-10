@@ -6,5 +6,5 @@ data class GroceryItem(
     val id: String? = null,
     val name: String,
     val price: BigInteger,
-    val quantity: Int
+    val quantity: Int = 0
 )

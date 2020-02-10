@@ -1,9 +1,6 @@
 package com.shopping_list.di
 
-import com.domain.usecase.CreateShoppingListUseCase
-import com.domain.usecase.DeleteShoppingListUseCase
-import com.domain.usecase.EditShoppingListUseCase
-import com.domain.usecase.GetAllShoppingListsUseCase
+import com.domain.usecase.*
 import org.koin.dsl.module
 
 val useCaseModule = module {
@@ -22,5 +19,9 @@ val useCaseModule = module {
 
     single {
         EditShoppingListUseCase(get(), get())
+    }
+
+    single {
+        GetGroceryItemsListUseCase(get(), get())
     }
 }
