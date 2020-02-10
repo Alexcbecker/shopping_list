@@ -17,10 +17,12 @@ class AndroidApplication : Application() {
             modules(
                 listOf(
                     androidModule,
+                    componentModule,
+                    serviceModule,
                     repositoryModule,
-                    persistenceModule,
+                    useCaseModule,
                     dataSourceModule,
-                    useCaseModule
+                    persistenceModule
                 )
             )
         }

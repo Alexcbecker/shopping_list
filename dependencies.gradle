@@ -20,10 +20,13 @@ ext {
 
     rxVersion = '2.4.0'
     rxAndroidVersion = '2.0.2'
-    retrofitVersion = '2.7.0'
     okHttpVersion = '4.2.2'
     gsonVersion = '2.8.6'
     roomVersion = '2.2.3'
+
+    retrofitVersion = '2.7.0'
+    okHttpVersion = '4.2.2'
+    gsonVersion = '2.8.6'
 
     timberVersion = '4.7.1'
 
@@ -48,7 +51,13 @@ ext {
             koinViewmodel           : "org.koin:koin-android-viewmodel:$koinVersion",
             rxRoom                  : "androidx.room:room-rxjava2:$roomVersion",
             room                    : "androidx.room:room-runtime:$roomVersion",
-            roomCompiler            : "androidx.room:room-compiler:$roomVersion"
+            roomCompiler            : "androidx.room:room-compiler:$roomVersion",
+            okHttp                  : "com.squareup.okhttp3:okhttp:$okHttpVersion",
+            okHttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$okHttpVersion",
+            retrofit                : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            gson                    : "com.google.code.gson:gson:$gsonVersion",
+            retrofitRxJavaAdapter   : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
+            retrofitConvertGson     : "com.squareup.retrofit2:converter-gson:$retrofitVersion",
     ]
 
     presentationDependencies = [
@@ -78,5 +87,17 @@ ext {
     dataDependencies = [
             kotlin  : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
             rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxVersion}"
+    ]
+
+    remoteDependencies = [
+            kotlin                  : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
+            rxKotlin                : "io.reactivex.rxjava2:rxkotlin:${rxVersion}",
+            okHttp                  : "com.squareup.okhttp3:okhttp:$okHttpVersion",
+            okHttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$okHttpVersion",
+            retrofit                : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            gson                    : "com.google.code.gson:gson:$gsonVersion",
+            retrofitRxJavaAdapter   : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
+            retrofitConvertGson     : "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+            timber                  : "com.jakewharton.timber:timber:${timberVersion}"
     ]
 }

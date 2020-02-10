@@ -54,4 +54,5 @@ dependencies {
     implementation presentationDependencies.koinScope
 
     implementation project(path: ':domain')
+    implementation project(path: ':remote')
 }

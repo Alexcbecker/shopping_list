@@ -1,2 +1,2 @@
-include ':app', ':presentation', ':local', ':domain', ':data'
+include ':app', ':presentation', ':local', ':domain', ':data', ':remote'
 rootProject.name='shopping_list'
