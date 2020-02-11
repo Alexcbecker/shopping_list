@@ -12,8 +12,6 @@ data class ShoppingListBinding(
     val items: List<GroceryItemBinding>? = null
 ) {
     val dateFormatted = date.toBrazilString()
-    val total = items?.map {
-        it.price.multiply(BigInteger.valueOf(it.quantity.toLong())) }
-        ?.fold(BigInteger.ZERO, BigInteger::add)
+    val total = items?.map { it.total }?.fold(BigInteger.ZERO, BigInteger::add)
     val totalFormatted = this.total?.toBrazilianRealString()
 }

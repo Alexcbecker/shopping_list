@@ -10,4 +10,6 @@ data class GroceryItemBinding(
     val quantity: Int
 ) {
     val priceFormatted = price.toBrazilianRealString()
+    val total = price.multiply(BigInteger.valueOf(quantity.toLong()))
+    val totalFormatted = this.total?.toBrazilianRealString()
 }

@@ -72,6 +72,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintWidth_percent="0.8"
                     android:layout_marginTop="12dp"
+                    tools:listitem="@layout/item_shopping_list_grocery_item"
                     app:layout_constraintTop_toBottomOf="@+id/textView_items"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
@@ -81,9 +82,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_add"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="24dp"
                     app:layout_constraintEnd_toEndOf="@+id/textView_items"
-                    app:layout_constraintBottom_toTopOf="@+id/textView_total_value"/>
+                    app:layout_constraintBottom_toTopOf="@+id/textView_total_value"
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerView_items_list"/>
 
             <FrameLayout
                     android:layout_width="match_parent"
@@ -107,7 +109,7 @@
                     android:id="@+id/textView_total_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="32dp"
                     android:text="@string/create_shopping_list_total_title"
                     app:layout_constraintStart_toStartOf="@+id/textView_items"
                     app:layout_constraintTop_toBottomOf="@+id/recyclerView_items_list"/>
@@ -117,6 +119,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="R$100,00"
+                    android:text="@{viewModel.shoppingList.totalFormatted}"
                     app:layout_constraintBottom_toBottomOf="@+id/textView_total_title"
                     app:layout_constraintTop_toTopOf="@+id/textView_total_title"
                     app:layout_constraintEnd_toEndOf="@+id/textView_items"/>
