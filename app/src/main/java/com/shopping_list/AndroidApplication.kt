@@ -22,7 +22,8 @@ class AndroidApplication : Application() {
                     repositoryModule,
                     useCaseModule,
                     dataSourceModule,
-                    persistenceModule
+                    persistenceModule,
+                    presentationModule
                 )
             )
         }
