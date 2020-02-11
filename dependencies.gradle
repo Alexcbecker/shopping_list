@@ -15,6 +15,7 @@ ext {
     navigationVersion = '2.2.0-rc03'
     materialVersion = '1.0.0'
     glideVersion = '4.10.0'
+    pagingVersion = '2.1.0'
 
     koinVersion = '2.0.1'
 
@@ -38,12 +39,13 @@ ext {
             coreKtx                 : "androidx.core:core-ktx:$androidxKtxVersion",
             constraintLayout        : "androidx.constraintlayout:constraintlayout:$constraintVersion",
             materialDesign          : "com.google.android.material:material:$materialVersion",
+            paging                  : "androidx.paging:paging-runtime:$pagingVersion",
             lifecycle               : "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion",
             lifecycleCompiler       : "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion",
             navigationRuntime       : "androidx.navigation:navigation-runtime-ktx:$navigationVersion",
             navigationFragment      : "androidx.navigation:navigation-fragment-ktx:$navigationVersion",
             navigationUi            : "androidx.navigation:navigation-ui-ktx:$navigationVersion",
-            timber             : "com.jakewharton.timber:timber:${timberVersion}",
+            timber                  : "com.jakewharton.timber:timber:${timberVersion}",
             glide                   : "com.github.bumptech.glide:glide:$glideVersion",
             glideCompiler           : "com.github.bumptech.glide:compiler:$glideVersion",
             koin                    : "org.koin:koin-android:$koinVersion",

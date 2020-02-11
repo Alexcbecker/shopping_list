@@ -20,6 +20,16 @@
             android:name="com.shopping_list.ui.fragments.CreateShoppingListFragment"
             android:label="@string/create_shopping_list_label"
             tools:layout="@layout/fragment_create_shopping_list">
+        <action
+                android:id="@+id/action_createShoppingListFragment_to_groceryItemsListFragment"
+                app:destination="@id/groceryItemsListFragment"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/groceryItemsListFragment"
+            android:name="com.shopping_list.ui.fragments.GroceryItemsListFragment"
+            android:label="@string/grocery_items_list_label"
+            tools:layout="@layout/fragment_grocery_items_list">
     </fragment>
 </navigation>
 

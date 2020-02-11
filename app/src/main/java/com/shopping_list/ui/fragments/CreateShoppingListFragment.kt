@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.presentation.viewModel.CreateShoppingListViewModel
+import com.shopping_list.R
 import com.shopping_list.databinding.FragmentCreateShoppingListBinding
 import com.shopping_list.ui.adapter.GroceryItemListAdapter
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -25,6 +27,7 @@ class CreateShoppingListFragment : Fragment() {
             lifecycleOwner = this@CreateShoppingListFragment.viewLifecycleOwner
             viewModel = this@CreateShoppingListFragment._createShoppingListViewModel
             setupRecyclerView()
+            setupListener()
         }
         return _viewDateBinding.root
     }
@@ -33,5 +36,11 @@ class CreateShoppingListFragment : Fragment() {
         val recyclerView = _viewDateBinding.recyclerViewItemsList
         recyclerView.adapter = _groceryItemsAdapter
         recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
+    }
+
+    private fun setupListener() {
+        _viewDateBinding.fabCreateAddGroceryItem.setOnClickListener {
+            findNavController().navigate(R.id.action_createShoppingListFragment_to_groceryItemsListFragment)
+        }
     }
 }

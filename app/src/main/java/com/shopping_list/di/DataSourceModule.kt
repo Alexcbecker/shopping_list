@@ -10,5 +10,5 @@ val dataSourceModule = module {
 
     single<IShoppingListLocalDataSource> { ShoppingListLocalDataSource(get(), get()) }
 
-    single<IGroceryItemsRemoteDataSource> { GroceryItemsRemoteDataSource(get()) }
+    single<IGroceryItemsRemoteDataSource> { GroceryItemsRemoteDataSource(/*get()*/) }
 }

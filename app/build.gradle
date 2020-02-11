@@ -62,6 +62,7 @@ dependencies {
     implementation appDependencies.coreKtx
     implementation appDependencies.constraintLayout
     implementation appDependencies.materialDesign
+    implementation appDependencies.paging
     implementation appDependencies.lifecycle
     kapt appDependencies.lifecycleCompiler
     implementation appDependencies.navigationRuntime

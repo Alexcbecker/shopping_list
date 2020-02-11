@@ -9,7 +9,7 @@ import com.shopping_list.databinding.ItemShoppingListGroceryItemBinding
 import com.shopping_list.ui.holder.GroceryItemListViewHolder
 import kotlinx.android.synthetic.main.item_shopping_list_grocery_item.view.*
 
-class GroceryItemListAdapter() : RecyclerView.Adapter<GroceryItemListViewHolder>() {
+class GroceryItemListAdapter : RecyclerView.Adapter<GroceryItemListViewHolder>() {
 
     private var _groceryItemsList: List<GroceryItemBinding> = emptyList()
 
