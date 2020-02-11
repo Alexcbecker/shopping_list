@@ -15,7 +15,7 @@ class CreateShoppingListViewModel(
     private val createShoppingListUseCase: CreateShoppingListUseCase
 ) : AndroidViewModel(application) {
 
-    private val _shoppingList = MutableLiveData<ShoppingListBinding>()
+    private val _shoppingList = MutableLiveData<ShoppingListBinding>().apply { value = ShoppingListBinding() }
     val shoppingList: LiveData<ShoppingListBinding>
         get() = _shoppingList
 

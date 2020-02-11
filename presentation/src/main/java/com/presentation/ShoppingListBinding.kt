@@ -9,7 +9,7 @@ data class ShoppingListBinding(
     val id: String? = null,
     val date: Date = Date(),
     val name: String = "",
-    val items: List<GroceryItemBinding>? = null
+    val items: List<GroceryItemBinding>? = mutableListOf()
 ) {
     val dateFormatted = date.toBrazilString()
     val total = items?.map { it.total }?.fold(BigInteger.ZERO, BigInteger::add)
