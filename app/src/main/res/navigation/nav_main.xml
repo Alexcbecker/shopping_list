@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_main"
-    app:startDestination="@+id/shoppingListFragment">
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav_main"
+            app:startDestination="@+id/shoppingListFragment">
 
     <fragment
-        android:id="@+id/shoppingListFragment"
-        android:name="com.shopping_list.ui.fragments.ShoppingListFragment"
-        android:label="@string/shopping_list_label"
-        tools:layout="@layout/fragment_shopping_list">
+            android:id="@+id/shoppingListFragment"
+            android:name="com.shopping_list.ui.fragments.ShoppingListFragment"
+            android:label="@string/shopping_list_label"
+            tools:layout="@layout/fragment_shopping_list">
+        <action
+                android:id="@+id/action_shoppingListFragment_to_createShoppingListFragment"
+                app:destination="@id/createShoppingListFragment"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/createShoppingListFragment"
+            android:name="com.shopping_list.ui.fragments.CreateShoppingListFragment"
+            android:label="@string/create_shopping_list_label"
+            tools:layout="@layout/fragment_create_shopping_list">
     </fragment>
 </navigation>
+
