@@ -30,15 +30,17 @@ class CreateShoppingListViewModel(
         get() = _successEvent
 
     fun createShoppingList() {
-        createShoppingListUseCase.execute(
-            CreateShoppingListUseCase.Params(_shoppingList.value!!.toDomain()),
-            {
-                _successEvent.value = Event(Unit)
-            },
-            {
-                Timber.d(it)
-            }
-        )
+        _shoppingList.value?.let { shoppingList ->
+            createShoppingListUseCase.execute(
+                CreateShoppingListUseCase.Params(shoppingList.toDomain()),
+                {
+                    _successEvent.value = Event(Unit)
+                },
+                {
+                    Timber.d(it)
+                }
+            )
+        }
     }
 
     fun setGroceryItemValue(groceryItemBinding: GroceryItemBinding) {

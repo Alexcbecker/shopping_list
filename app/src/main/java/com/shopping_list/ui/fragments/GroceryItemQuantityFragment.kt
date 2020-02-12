@@ -32,13 +32,14 @@ class GroceryItemQuantityFragment : Fragment() {
 
     private fun setupListeners() {
         _viewDateBinding.buttonAddGroceryItem.setOnClickListener {
-            _viewDateBinding.textViewHelperText.requestFocus()
-            val viewText = _viewDateBinding.edittextGroceryItemQuantity.text!!
-            if (viewText.equals("") || viewText.equals("0")) {
+            _viewDateBinding.frameLayoutHelperText.requestFocus()
+            val viewText = _viewDateBinding.edittextGroceryItemQuantity.text.toString()
+            if (viewText.isBlank() || viewText.equals("0")) {
+                showValidationError()
+            } else {
                 _createShoppingListViewModel.addGroceryItemToShoppingList()
                 findNavController().popBackStack(R.id.createShoppingListFragment, false)
-            } else {
-                showValidationError()
+
             }
         }
 

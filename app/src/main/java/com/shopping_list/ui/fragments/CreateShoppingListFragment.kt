@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.presentation.extension.toBrazilString
@@ -15,7 +16,7 @@ import com.shopping_list.R
 import com.shopping_list.databinding.FragmentCreateShoppingListBinding
 import com.shopping_list.ui.adapter.GroceryItemListAdapter
 import org.koin.android.viewmodel.ext.android.sharedViewModel
-import java.util.*
+import java.util.Calendar
 
 class CreateShoppingListFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
@@ -41,8 +42,17 @@ class CreateShoppingListFragment : Fragment(), DatePickerDialog.OnDateSetListene
     }
 
     private fun init() {
+        subscribeToSuccessEvent()
         setupRecyclerView()
         setupListeners()
+    }
+
+    private fun subscribeToSuccessEvent() {
+        _createShoppingListViewModel.successEvent.observe(this, Observer {
+            it.getContentIfNotHandled()?.let {
+                findNavController().popBackStack()
+            }
+        })
     }
 
     private fun setupRecyclerView() {
