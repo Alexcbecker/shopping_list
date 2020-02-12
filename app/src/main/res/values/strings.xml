@@ -16,4 +16,6 @@
     <string name="grocery_item_details_value">Valor do item</string>
     <string name="grocery_item_details_quantity">Quantidade do item</string>
     <string name="grocery_item_details_helper_text">Informe a quantidade de itens que deseja adicionar</string>
+    <string name="validation_mandatory_field">Campo obrigatório</string>
+    <string name="validation_invalid_value">O valor deve ser maior que 0</string>
 </resources>

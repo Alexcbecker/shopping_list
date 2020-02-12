@@ -145,6 +145,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/textView_items"/>
 
             <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_save_shopping_list"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintWidth_percent="0.8"

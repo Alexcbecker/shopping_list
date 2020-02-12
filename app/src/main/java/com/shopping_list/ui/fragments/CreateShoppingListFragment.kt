@@ -59,6 +59,18 @@ class CreateShoppingListFragment : Fragment(), DatePickerDialog.OnDateSetListene
         _viewDateBinding.viewCalendar.setOnClickListener {
             showDatePickerDialog()
         }
+
+        _viewDateBinding.buttonSaveShoppingList.setOnClickListener {
+            if (!_viewDateBinding.edittextName.text.isNullOrBlank()) {
+                _createShoppingListViewModel.createShoppingList()
+            } else {
+                showValidationError()
+            }
+        }
+
+        _viewDateBinding.edittextName.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) clearFieldErrors()
+        }
     }
 
     private fun showDatePickerDialog() {
@@ -82,4 +94,12 @@ class CreateShoppingListFragment : Fragment(), DatePickerDialog.OnDateSetListene
         }
     }
 
+    private fun showValidationError() {
+        _viewDateBinding.textInputLayoutName.isErrorEnabled = true
+        _viewDateBinding.textInputLayoutName.error = getString(R.string.validation_mandatory_field)
+    }
+
+    private fun clearFieldErrors() {
+        _viewDateBinding.textInputLayoutName.isErrorEnabled = false
+    }
 }

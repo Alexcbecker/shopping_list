@@ -25,15 +25,34 @@ class GroceryItemQuantityFragment : Fragment() {
         _viewDateBinding.run {
             lifecycleOwner = this@GroceryItemQuantityFragment.viewLifecycleOwner
             viewModel = this@GroceryItemQuantityFragment._createShoppingListViewModel
-           setupListener()
+            setupListeners()
         }
         return _viewDateBinding.root
     }
 
-    private fun setupListener() {
+    private fun setupListeners() {
         _viewDateBinding.buttonAddGroceryItem.setOnClickListener {
-            _createShoppingListViewModel.addGroceryItemToShoppingList()
-            findNavController().popBackStack(R.id.createShoppingListFragment, false)
+            _viewDateBinding.textViewHelperText.requestFocus()
+            val viewText = _viewDateBinding.edittextGroceryItemQuantity.text!!
+            if (viewText.equals("") || viewText.equals("0")) {
+                _createShoppingListViewModel.addGroceryItemToShoppingList()
+                findNavController().popBackStack(R.id.createShoppingListFragment, false)
+            } else {
+                showValidationError()
+            }
         }
+
+        _viewDateBinding.edittextGroceryItemQuantity.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) clearFieldErrors()
+        }
+    }
+
+    private fun showValidationError() {
+        _viewDateBinding.textInputLayoutGroceryItemQuantity.isErrorEnabled = true
+        _viewDateBinding.textInputLayoutGroceryItemQuantity.error = getString(R.string.validation_invalid_value)
+    }
+
+    private fun clearFieldErrors() {
+        _viewDateBinding.textInputLayoutGroceryItemQuantity.isErrorEnabled = false
     }
 }
