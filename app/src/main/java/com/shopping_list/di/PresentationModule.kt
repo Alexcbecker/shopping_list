@@ -1,6 +1,7 @@
 package com.shopping_list.di
 
 import com.presentation.viewModel.CreateShoppingListViewModel
+import com.presentation.viewModel.DeleteShoppingListViewModel
 import com.presentation.viewModel.GetGroceryItemsListViewModel
 import com.presentation.viewModel.ShoppingListViewModel
 import org.koin.android.ext.koin.androidApplication
@@ -19,5 +20,9 @@ val presentationModule = module {
 
     viewModel {
         ShoppingListViewModel(androidApplication(), get())
+    }
+
+    viewModel {
+        DeleteShoppingListViewModel(androidApplication(), get())
     }
 }

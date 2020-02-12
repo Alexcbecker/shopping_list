@@ -17,7 +17,7 @@ interface ShoppingListDao {
     fun edit(shoppingList: ShoppingList): Completable
 
     @Query("DELETE FROM ShoppingList WHERE id = :id")
-    fun deleteById(id: String): Completable
+    fun deleteById(id: Long): Completable
 
     @Query("SELECT * FROM ShoppingList ORDER BY date DESC")
     @Transaction
