@@ -4,12 +4,12 @@ import com.presentation.extension.toBrazilianRealString
 import java.math.BigInteger
 
 data class GroceryItemBinding(
-    val id: String? = null,
+    var id: String? = null,
     val name: String,
     val price: BigInteger,
-    val quantity: Int
+    var quantity: String
 ) {
-    val priceFormatted = price.toBrazilianRealString()
-    val total = price.multiply(BigInteger.valueOf(quantity.toLong()))
-    val totalFormatted = this.total?.toBrazilianRealString()
+    var priceFormatted = price.toBrazilianRealString()
+    val total get() = price.multiply(BigInteger.valueOf(quantity.toLong()))
+    val totalFormatted get() = this.total?.toBrazilianRealString()
 }

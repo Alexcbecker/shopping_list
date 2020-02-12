@@ -8,7 +8,7 @@ fun GroceryItem.fromDomain(): GroceryItemBinding {
         id = this.id?.toString(),
         name = this.name,
         price = this.price,
-        quantity = this.quantity
+        quantity = this.quantity.toString()
     )
 }
 
@@ -17,6 +17,6 @@ fun GroceryItemBinding.toDomain(): GroceryItem {
         id = this.id?.toInt(),
         name = this.name,
         price = this.price,
-        quantity = this.quantity
+        quantity = this.quantity.toInt()
     )
 }

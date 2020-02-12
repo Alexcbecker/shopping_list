@@ -13,9 +13,11 @@ class GroceryItemListAdapter : RecyclerView.Adapter<GroceryItemListViewHolder>()
 
     private var _groceryItemsList: List<GroceryItemBinding> = emptyList()
 
-    fun replaceData(groceryItemsList: List<GroceryItemBinding>) {
-        _groceryItemsList = groceryItemsList
-        notifyDataSetChanged()
+    fun replaceData(groceryItemsList: List<GroceryItemBinding>?) {
+       groceryItemsList?.let {
+           _groceryItemsList = groceryItemsList
+           notifyDataSetChanged()
+       }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroceryItemListViewHolder {
@@ -38,7 +40,7 @@ class GroceryItemListAdapter : RecyclerView.Adapter<GroceryItemListViewHolder>()
     companion object {
         @JvmStatic
         @BindingAdapter("groceryItems")
-        fun setGroceryItemsList(recyclerView: RecyclerView, groceryItems: MutableList<GroceryItemBinding>) {
+        fun setGroceryItemsList(recyclerView: RecyclerView, groceryItems: MutableList<GroceryItemBinding>?) {
             with(recyclerView.adapter as GroceryItemListAdapter) {
                 replaceData(groceryItems)
             }

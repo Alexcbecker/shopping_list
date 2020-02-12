@@ -6,19 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.presentation.viewModel.CreateShoppingListViewModel
 import com.shopping_list.R
 import com.shopping_list.databinding.FragmentCreateShoppingListBinding
 import com.shopping_list.ui.adapter.GroceryItemListAdapter
 import org.koin.android.viewmodel.ext.android.sharedViewModel
-import org.koin.android.viewmodel.ext.android.viewModel
 
 class CreateShoppingListFragment : Fragment() {
 
     private lateinit var _viewDateBinding: FragmentCreateShoppingListBinding
-    //private val _createShoppingListViewModel by viewModel<CreateShoppingListViewModel>()
     private val _createShoppingListViewModel: CreateShoppingListViewModel by sharedViewModel(from = {
         findNavController().getViewModelStoreOwner(
             R.id.nav_main

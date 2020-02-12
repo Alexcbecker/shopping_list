@@ -3,6 +3,7 @@
     <string name="shopping_list_label">Lista de compras</string>
     <string name="create_shopping_list_label">Criar lista de compras</string>
     <string name="grocery_items_list_label">Lista de itens</string>
+    <string name="grocery_items_quantity_label">Quantidade de itens</string>
     <string name="create_shopping_list_name_hint">Nome da lista de compras</string>
     <string name="create_shopping_list_date_hint">Data</string>
     <string name="create_shopping_list_items_title">Itens</string>

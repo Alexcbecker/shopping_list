@@ -87,10 +87,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
-                    android:text="@{viewModel.groceryItem.quantity}"/>
+                    android:text="@={viewModel.groceryItem.quantity}"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_add_grocery_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

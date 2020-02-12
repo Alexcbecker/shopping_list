@@ -16,7 +16,8 @@ class CreateShoppingListViewModel(
     private val createShoppingListUseCase: CreateShoppingListUseCase
 ) : AndroidViewModel(application) {
 
-    private val _shoppingList = MutableLiveData<ShoppingListBinding>().apply { value = ShoppingListBinding() }
+    private val _shoppingList = MutableLiveData<ShoppingListBinding>()
+        .apply { value = ShoppingListBinding() }
     val shoppingList: LiveData<ShoppingListBinding>
         get() = _shoppingList
 
@@ -38,6 +39,18 @@ class CreateShoppingListViewModel(
                 Timber.d(it)
             }
         )
+    }
+
+    fun setGroceryItemValue(groceryItemBinding: GroceryItemBinding) {
+        _groceryItem.value = groceryItemBinding
+    }
+
+    fun addGroceryItemToShoppingList() {
+        _groceryItem.value?.let {
+            if (_shoppingList.value!!.items.filter { item -> item.id == it.id }.isEmpty()) {
+                (_shoppingList.value?.items as MutableList).add(it)
+            }
+        }
     }
 
     override fun onCleared() {
