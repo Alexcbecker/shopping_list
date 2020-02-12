@@ -16,6 +16,7 @@ import com.shopping_list.R
 import com.shopping_list.databinding.FragmentCreateShoppingListBinding
 import com.shopping_list.ui.adapter.GroceryItemListAdapter
 import org.koin.android.viewmodel.ext.android.sharedViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.Calendar
 
 class CreateShoppingListFragment : Fragment(), DatePickerDialog.OnDateSetListener {

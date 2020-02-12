@@ -52,6 +52,7 @@ dependencies {
     implementation presentationDependencies.timber
     implementation presentationDependencies.koin
     implementation presentationDependencies.koinScope
+    implementation presentationDependencies.paging
 
     implementation project(path: ':domain')
     implementation project(path: ':remote')

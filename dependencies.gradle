@@ -71,24 +71,28 @@ ext {
             timber             : "com.jakewharton.timber:timber:${timberVersion}",
             rxKotlin           : "io.reactivex.rxjava2:rxkotlin:${rxVersion}",
             koin               : "org.koin:koin-android:$koinVersion",
-            koinScope          : "org.koin:koin-android-scope:$koinVersion"
+            koinScope          : "org.koin:koin-android-scope:$koinVersion",
+            paging             : "androidx.paging:paging-runtime:$pagingVersion",
     ]
 
     domainDependencies = [
             kotlin  : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
             rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxVersion}",
+            paging  : "androidx.paging:paging-runtime:$pagingVersion",
     ]
 
     localDependencies = [
             kotlin      : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
             rxRoom      : "androidx.room:room-rxjava2:$roomVersion",
             room        : "androidx.room:room-runtime:$roomVersion",
-            roomCompiler: "androidx.room:room-compiler:$roomVersion"
+            roomCompiler: "androidx.room:room-compiler:$roomVersion",
+            paging      : "androidx.paging:paging-runtime:$pagingVersion",
     ]
 
     dataDependencies = [
             kotlin  : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
-            rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxVersion}"
+            rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxVersion}",
+            paging  : "androidx.paging:paging-runtime:$pagingVersion",
     ]
 
     remoteDependencies = [

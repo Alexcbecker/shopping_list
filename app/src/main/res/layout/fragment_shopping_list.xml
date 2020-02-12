@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
-    <data>
-        <import type="android.view.View"/>
-    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_shopping_lists"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimaryDark"
-                android:text="@string/shopping_list_label"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="32dp"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab_create_shopping_list"
@@ -25,7 +26,6 @@
                 android:src="@drawable/ic_add"
                 android:layout_gravity="end|bottom"
                 android:layout_margin="16dp"
-                android:layout_marginBottom="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 

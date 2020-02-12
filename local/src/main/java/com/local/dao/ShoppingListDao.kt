@@ -1,5 +1,6 @@
 package com.local.dao
 
+import androidx.paging.DataSource
 import androidx.room.*
 import com.local.entity.ShoppingList
 import com.local.entity.ShoppingListWithGroceryItems
@@ -18,7 +19,8 @@ interface ShoppingListDao {
     @Query("DELETE FROM ShoppingList WHERE id = :id")
     fun deleteById(id: String): Completable
 
-    @Query("SELECT * FROM ShoppingList")
+    @Query("SELECT * FROM ShoppingList ORDER BY date DESC")
     @Transaction
-    fun findAll(): Observable<List<ShoppingListWithGroceryItems>>
+    //fun findAll(): Observable<List<ShoppingListWithGroceryItems>>
+    fun findAll(): DataSource.Factory<Int, ShoppingListWithGroceryItems>
 }
