@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -16,6 +17,7 @@ import com.shopping_list.R
 import com.shopping_list.databinding.FragmentShoppingListBinding
 import com.shopping_list.ui.OnItemClickListener
 import com.shopping_list.ui.adapter.ShoppingListAdapter
+import com.shopping_list.ui.fragments.CreateShoppingListFragment.Companion.ARG_SHOPPING_LIST
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ShoppingListFragment : Fragment() {
@@ -25,7 +27,8 @@ class ShoppingListFragment : Fragment() {
     private val onItemClickListener = object
         : OnItemClickListener<ShoppingListBinding> {
         override fun onItemClick(data: ShoppingListBinding) {
-            Toast.makeText(context, data.name, Toast.LENGTH_SHORT).show()
+            val bundle = bundleOf(ARG_SHOPPING_LIST to data)
+            findNavController().navigate(R.id.action_shoppingListFragment_to_createShoppingListFragment, bundle)
         }
     }
     private val adapter = ShoppingListAdapter(onItemClickListener)

@@ -41,6 +41,6 @@ class ShoppingListLocalDataSource(
     }
 
     override fun deleteShoppingList(id: String): Completable {
-        return shoppingListDao.deleteById(id)
+        return shoppingListDao.deleteById(id.toLong())
     }
 }
