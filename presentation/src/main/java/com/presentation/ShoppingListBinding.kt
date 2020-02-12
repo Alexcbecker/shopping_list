@@ -11,7 +11,7 @@ data class ShoppingListBinding(
     var name: String? = null,
     var items: List<GroceryItemBinding> = mutableListOf()
 ) {
-    var dateFormatted = date.toBrazilString()
+    val dateFormatted get() = date.toBrazilString()
     val total get() = items.map { it.total }.fold(BigInteger.ZERO, BigInteger::add)
     val totalFormatted get() = total?.toBrazilianRealString()
 }
