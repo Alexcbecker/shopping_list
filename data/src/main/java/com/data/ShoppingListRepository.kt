@@ -1,14 +1,14 @@
 package com.data
 
+import androidx.paging.DataSource
 import com.domain.ShoppingList
 import com.domain.repository.IShoppingListRepository
 import io.reactivex.Completable
-import io.reactivex.Observable
 
 class ShoppingListRepository(private val shoppingListLocalDataSource: IShoppingListLocalDataSource) :
     IShoppingListRepository {
 
-    override fun getAllShoppingLists(): Observable<List<ShoppingList>> {
+    override fun getAllShoppingLists(): DataSource.Factory<Int, ShoppingList> {
         return shoppingListLocalDataSource.getAllShoppingLists()
     }
 

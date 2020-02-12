@@ -35,4 +35,5 @@ dependencies {
     implementation localDependencies.room
     implementation localDependencies.rxRoom
     kapt localDependencies.roomCompiler
+    implementation localDependencies.paging
 }

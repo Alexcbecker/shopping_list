@@ -5,6 +5,7 @@ dependencies {
 
     implementation dataDependencies.kotlin
     implementation dataDependencies.rxKotlin
+    implementation dataDependencies.paging
 }
 
 sourceCompatibility = "8"

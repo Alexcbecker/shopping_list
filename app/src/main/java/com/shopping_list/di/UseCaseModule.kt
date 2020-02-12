@@ -6,7 +6,7 @@ import org.koin.dsl.module
 val useCaseModule = module {
 
     single {
-        GetAllShoppingListsUseCase(get(), get())
+        GetAllShoppingListsUseCase(get())
     }
 
     single {
