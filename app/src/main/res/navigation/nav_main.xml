@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_main"
-    app:startDestination="@+id/shoppingListFragment">
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav_main"
+            app:startDestination="@+id/shoppingListFragment">
 
     <fragment
-        android:id="@+id/shoppingListFragment"
-        android:name="com.shopping_list.ui.fragments.ShoppingListFragment"
-        android:label="@string/shopping_list_label"
-        tools:layout="@layout/fragment_shopping_list">
+            android:id="@+id/shoppingListFragment"
+            android:name="com.shopping_list.ui.fragments.ShoppingListFragment"
+            android:label="@string/shopping_list_label"
+            tools:layout="@layout/fragment_shopping_list">
+        <action
+                android:id="@+id/action_shoppingListFragment_to_createShoppingListFragment"
+                app:destination="@id/createShoppingListFragment"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/createShoppingListFragment"
+            android:name="com.shopping_list.ui.fragments.CreateShoppingListFragment"
+            android:label="@string/create_shopping_list_label"
+            tools:layout="@layout/fragment_create_shopping_list">
+        <action
+                android:id="@+id/action_createShoppingListFragment_to_groceryItemsListFragment"
+                app:destination="@id/groceryItemsListFragment"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/groceryItemsListFragment"
+            android:name="com.shopping_list.ui.fragments.GroceryItemsListFragment"
+            android:label="@string/grocery_items_list_label"
+            tools:layout="@layout/fragment_grocery_items_list">
+
+        <action
+                android:id="@+id/action_groceryItemsListFragment_to_groceryItemsQuantityFragment"
+                app:destination="@id/groceryItemsQuantityFragment"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/groceryItemsQuantityFragment"
+            android:name="com.shopping_list.ui.fragments.GroceryItemQuantityFragment"
+            android:label="@string/grocery_items_quantity_label"
+            tools:layout="@layout/fragment_select_quantity_grocery_item">
     </fragment>
 </navigation>
+

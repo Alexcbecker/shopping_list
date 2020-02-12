@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+                name="viewModel"
+                type="com.presentation.viewModel.CreateShoppingListViewModel"/>
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout_name"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_marginTop="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    app:layout_constraintWidth_percent="0.8"
+                    android:hint="@string/create_shopping_list_name_hint"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edittext_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords"
+                        android:text="@={viewModel.shoppingList.name}"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout_date"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    app:layout_constraintWidth_percent="0.7"
+                    android:hint="@string/create_shopping_list_date_hint"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout_name"
+                    app:layout_constraintStart_toStartOf="@+id/textInputLayout_name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edittext_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@{viewModel.shoppingList.dateFormatted}"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                    android:id="@+id/view_calendar"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/ic_calendar"
+                    app:layout_constraintEnd_toEndOf="@+id/textInputLayout_name"
+                    app:layout_constraintStart_toEndOf="@+id/textInputLayout_date"
+                    app:layout_constraintBottom_toTopOf="@+id/textView_items"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout_name"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textView_items"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintWidth_percent="0.8"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/create_shopping_list_items_title"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout_date"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_items_list"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintWidth_percent="0.8"
+                    android:layout_marginTop="12dp"
+                    app:groceryItems="@{viewModel.shoppingList.items}"
+                    tools:listitem="@layout/item_shopping_list_grocery_item"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_items"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_create_add_groceryItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add"
+                    android:layout_marginBottom="24dp"
+                    app:layout_constraintEnd_toEndOf="@+id/textView_items"
+                    app:layout_constraintBottom_toTopOf="@+id/textView_total_value"
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerView_items_list"/>
+
+            <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    app:layout_constraintWidth_percent="0.8"
+                    android:layout_marginTop="12dp"
+                    android:visibility="@{viewModel.shoppingList.items.size() > 0 ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_items"
+                    app:layout_constraintStart_toStartOf="@+id/textView_items">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="start"
+                        android:text="@string/create_shopping_list_empty_list_message"/>
+
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textView_total_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/create_shopping_list_total_title"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/textView_items"
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerView_items_list"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textView_total_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="R$100,00"
+                    android:text="@{viewModel.shoppingList.totalFormatted}"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_total_title"
+                    app:layout_constraintTop_toTopOf="@+id/textView_total_title"
+                    app:layout_constraintEnd_toEndOf="@+id/textView_items"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_save_shopping_list"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintWidth_percent="0.8"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/colorAccent"
+                    android:text="@string/create_shopping_list_save"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_total_title"
+                    app:layout_constraintStart_toStartOf="@+id/textView_total_title"
+                    app:layout_constraintEnd_toEndOf="@+id/recyclerView_items_list"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

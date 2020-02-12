@@ -25,13 +25,13 @@ fun ShoppingListWithGroceryItems.toDomain(): ShoppingList {
 fun ShoppingList.fromDomain(): ShoppingListWithGroceryItems {
     return ShoppingListWithGroceryItems(
         shoppingList = ShoppingListEntity(
-            id = this.id,
+            id = this.id ?: 0,
             date = this.date,
             name = this.name
         ),
         groceryItemList = this.items?.map { groceryItem ->
             GroceryItemEntity(
-                id = groceryItem.id,
+                id = groceryItem.id ?: 0,
                 shoppingListId = this.id,
                 name = groceryItem.name,
                 price = groceryItem.price,

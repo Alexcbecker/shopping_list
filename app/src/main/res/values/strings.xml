@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">Shopping list</string>
     <string name="shopping_list_label">Lista de compras</string>
+    <string name="create_shopping_list_label">Criar lista de compras</string>
+    <string name="grocery_items_list_label">Lista de itens</string>
+    <string name="grocery_items_quantity_label">Quantidade de itens</string>
+    <string name="create_shopping_list_name_hint">Nome da lista de compras</string>
+    <string name="create_shopping_list_date_hint">Data</string>
+    <string name="create_shopping_list_items_title">Itens</string>
+    <string name="create_shopping_list_total_title">Valor total:</string>
+    <string name="create_shopping_list_empty_list_message">Nenhum item adicionado à lista</string>
+    <string name="create_shopping_list_save">Salvar</string>
+    <string name="grocery_items_list_empty_message">Nenhum item disponível</string>
+    <string name="grocery_items_list_helper_text">Selecione um item para adicionar à lista de compras</string>
+    <string name="grocery_item_details_name">Nome do item</string>
+    <string name="grocery_item_details_value">Valor do item</string>
+    <string name="grocery_item_details_quantity">Quantidade do item</string>
+    <string name="grocery_item_details_helper_text">Informe a quantidade de itens que deseja adicionar</string>
+    <string name="validation_mandatory_field">Campo obrigatório</string>
+    <string name="validation_invalid_value">O valor deve ser maior que 0</string>
 </resources>

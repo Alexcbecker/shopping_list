@@ -7,7 +7,7 @@ import com.remote.service.GroceryItemsService
 import io.reactivex.Observable
 import java.math.BigInteger
 
-class GroceryItemsRemoteDataSource(private val groceryItemsService: GroceryItemsService) :
+class GroceryItemsRemoteDataSource(/*private val groceryItemsService: GroceryItemsService*/) :
     IGroceryItemsRemoteDataSource {
 
     override fun getGroceryItemsList(): Observable<List<GroceryItem>> {
@@ -31,7 +31,7 @@ class GroceryItemsRemoteDataSource(private val groceryItemsService: GroceryItems
 
     private fun mockGroceryItem(index: Int): GroceryItemEntity {
         return GroceryItemEntity(
-            id = index.toString(),
+            id = index,
             name = "Mock item $index",
             price = BigInteger.valueOf(index.toLong())
         )
