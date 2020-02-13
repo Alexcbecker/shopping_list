@@ -28,7 +28,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
                     app:layout_constraintWidth_percent="0.8"
-                    android:hint="@string/create_shopping_list_name_hint"
+                    android:hint="@string/manage_shopping_list_name_hint"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent">
@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
                     app:layout_constraintWidth_percent="0.7"
-                    android:hint="@string/create_shopping_list_date_hint"
+                    android:hint="@string/manage_shopping_list_date_hint"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textInputLayout_name"
@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintWidth_percent="0.8"
                     android:layout_marginTop="16dp"
-                    android:text="@string/create_shopping_list_items_title"
+                    android:text="@string/manage_shopping_list_items_title"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -121,7 +121,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="start"
-                        android:text="@string/create_shopping_list_empty_list_message"/>
+                        android:text="@string/manage_shopping_list_empty_list_message"/>
 
             </FrameLayout>
 
@@ -130,7 +130,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
-                    android:text="@string/create_shopping_list_total_title"
+                    android:text="@string/manage_shopping_list_total_title"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/textView_items"
@@ -154,8 +154,9 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintWidth_percent="0.8"
                     android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     android:backgroundTint="@color/colorAccent"
-                    android:text="@string/create_shopping_list_save"
+                    android:text="@string/manage_shopping_list_save"
                     android:textColor="@android:color/white"
                     app:layout_constraintTop_toBottomOf="@+id/textView_total_title"
                     app:layout_constraintStart_toStartOf="@+id/textView_total_title"
