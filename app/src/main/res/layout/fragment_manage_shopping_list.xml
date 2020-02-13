@@ -15,8 +15,11 @@
             android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_layout_fragment_manage"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
 
             <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayout_name"
@@ -63,6 +66,7 @@
                     android:id="@+id/view_calendar"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
+                    android:focusable="true"
                     android:background="@drawable/ic_calendar"
                     app:layout_constraintEnd_toEndOf="@+id/textInputLayout_name"
                     app:layout_constraintStart_toEndOf="@+id/textInputLayout_date"

@@ -17,7 +17,7 @@ import com.presentation.extension.toBrazilString
 import com.presentation.viewModel.ManageShoppingListViewModel
 import com.presentation.viewModel.DeleteShoppingListViewModel
 import com.shopping_list.R
-import com.shopping_list.databinding.FragmentCreateShoppingListBinding
+import com.shopping_list.databinding.FragmentManageShoppingListBinding
 import com.shopping_list.ui.OnItemClickListener
 import com.shopping_list.ui.adapter.GroceryItemListAdapter
 import org.koin.android.viewmodel.ext.android.sharedViewModel
@@ -26,7 +26,7 @@ import java.util.Calendar
 
 class ManageShoppingListFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
-    private lateinit var _viewDateBinding: FragmentCreateShoppingListBinding
+    private lateinit var _viewDateBinding: FragmentManageShoppingListBinding
     private val _manageShoppingListViewModel: ManageShoppingListViewModel by sharedViewModel(from = {
         findNavController().getViewModelStoreOwner(
             R.id.nav_main
@@ -75,7 +75,7 @@ class ManageShoppingListFragment : Fragment(), DatePickerDialog.OnDateSetListene
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _viewDateBinding = FragmentCreateShoppingListBinding.inflate(inflater, container, false)
+        _viewDateBinding = FragmentManageShoppingListBinding.inflate(inflater, container, false)
         _viewDateBinding.run {
             lifecycleOwner = this@ManageShoppingListFragment.viewLifecycleOwner
             viewModel = this@ManageShoppingListFragment._manageShoppingListViewModel
@@ -139,6 +139,8 @@ class ManageShoppingListFragment : Fragment(), DatePickerDialog.OnDateSetListene
         }
 
         _viewDateBinding.buttonSaveShoppingList.setOnClickListener {
+            _viewDateBinding.edittextName.clearFocus()
+            _viewDateBinding.constraintLayoutFragmentManage.requestFocus()
             if (isValidName()) {
                 _manageShoppingListViewModel.dispatchEvent()
             } else {

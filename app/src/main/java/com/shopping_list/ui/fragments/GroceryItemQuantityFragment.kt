@@ -32,7 +32,8 @@ class GroceryItemQuantityFragment : Fragment() {
 
     private fun setupListeners() {
         _viewDateBinding.buttonAddGroceryItem.setOnClickListener {
-            _viewDateBinding.frameLayoutHelperText.requestFocus()
+            _viewDateBinding.edittextGroceryItemQuantity.clearFocus()
+            _viewDateBinding.constraintLayoutFragmentSelectQuantity.requestFocus()
             val viewText = _viewDateBinding.edittextGroceryItemQuantity.text.toString()
             if (viewText.isBlank() || viewText.equals("0")) {
                 showValidationError()

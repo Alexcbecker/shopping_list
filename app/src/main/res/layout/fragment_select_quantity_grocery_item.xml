@@ -6,8 +6,11 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_layout_fragment_select_quantity"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:focusable="true">
 
         <FrameLayout
                 android:id="@+id/frame_layout_helper_text"
