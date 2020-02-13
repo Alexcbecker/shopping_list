@@ -4,13 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.presentation.GroceryItemBinding
-import com.presentation.viewModel.CreateShoppingListViewModel
+import com.presentation.viewModel.ManageShoppingListViewModel
 import com.presentation.viewModel.GetGroceryItemsListViewModel
 import com.shopping_list.R
 import com.shopping_list.databinding.FragmentGroceryItemsListBinding
@@ -23,14 +22,14 @@ class GroceryItemsListFragment : Fragment() {
 
     private lateinit var _viewDateBinding: FragmentGroceryItemsListBinding
     private val _getGroceryItemsListViewModel by viewModel<GetGroceryItemsListViewModel>()
-    private val _createShoppingListViewModel: CreateShoppingListViewModel by sharedViewModel(from = {
+    private val _manageShoppingListViewModel: ManageShoppingListViewModel by sharedViewModel(from = {
         findNavController().getViewModelStoreOwner(
             R.id.nav_main
         )
     })
     private val onItemClickListener = object : OnItemClickListener<GroceryItemBinding> {
         override fun onItemClick(data: GroceryItemBinding) {
-            _createShoppingListViewModel.setGroceryItemValue(data)
+            _manageShoppingListViewModel.setGroceryItemValue(data)
             findNavController().navigate(R.id.action_groceryItemsListFragment_to_groceryItemsQuantityFragment)
         }
     }

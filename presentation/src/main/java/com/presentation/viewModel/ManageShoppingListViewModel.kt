@@ -11,7 +11,7 @@ import com.presentation.ShoppingListBinding
 import com.presentation.mapper.toDomain
 import timber.log.Timber
 
-class CreateShoppingListViewModel(
+class ManageShoppingListViewModel(
     application: Application,
     private val createShoppingListUseCase: CreateShoppingListUseCase
 ) : AndroidViewModel(application) {
@@ -40,6 +40,12 @@ class CreateShoppingListViewModel(
                     Timber.d(it)
                 }
             )
+        }
+    }
+
+    fun setShoppingListValue(shoppingListBinding: ShoppingListBinding?) {
+        shoppingListBinding?.let {
+            _shoppingList.value = shoppingListBinding
         }
     }
 

@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.presentation.ShoppingListBinding
 import com.presentation.extension.toBrazilString
-import com.presentation.viewModel.CreateShoppingListViewModel
+import com.presentation.viewModel.ManageShoppingListViewModel
 import com.presentation.viewModel.DeleteShoppingListViewModel
 import com.shopping_list.R
 import com.shopping_list.databinding.FragmentCreateShoppingListBinding
@@ -21,10 +21,10 @@ import org.koin.android.viewmodel.ext.android.sharedViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.Calendar
 
-class CreateShoppingListFragment : Fragment(), DatePickerDialog.OnDateSetListener {
+class ManageShoppingListFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
     private lateinit var _viewDateBinding: FragmentCreateShoppingListBinding
-    private val _createShoppingListViewModel: CreateShoppingListViewModel by sharedViewModel(from = {
+    private val _manageShoppingListViewModel: ManageShoppingListViewModel by sharedViewModel(from = {
         findNavController().getViewModelStoreOwner(
             R.id.nav_main
         )
@@ -41,6 +41,7 @@ class CreateShoppingListFragment : Fragment(), DatePickerDialog.OnDateSetListene
         super.onCreate(savedInstanceState)
         arguments?.let {
             shoppingListBinding = it.getSerializable(ARG_SHOPPING_LIST) as ShoppingListBinding
+            _manageShoppingListViewModel.setShoppingListValue(shoppingListBinding)
         }
         setHasOptionsMenu(true)
     }
@@ -66,8 +67,8 @@ class CreateShoppingListFragment : Fragment(), DatePickerDialog.OnDateSetListene
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _viewDateBinding = FragmentCreateShoppingListBinding.inflate(inflater, container, false)
         _viewDateBinding.run {
-            lifecycleOwner = this@CreateShoppingListFragment.viewLifecycleOwner
-            viewModel = this@CreateShoppingListFragment._createShoppingListViewModel
+            lifecycleOwner = this@ManageShoppingListFragment.viewLifecycleOwner
+            viewModel = this@ManageShoppingListFragment._manageShoppingListViewModel
             init()
         }
         return _viewDateBinding.root
@@ -80,7 +81,7 @@ class CreateShoppingListFragment : Fragment(), DatePickerDialog.OnDateSetListene
     }
 
     private fun subscribeToSuccessEvent() {
-        _createShoppingListViewModel.successEvent.observe(this, Observer {
+        _manageShoppingListViewModel.successEvent.observe(this, Observer {
             it.getContentIfNotHandled()?.let {
                 findNavController().popBackStack()
             }
@@ -110,7 +111,7 @@ class CreateShoppingListFragment : Fragment(), DatePickerDialog.OnDateSetListene
 
         _viewDateBinding.buttonSaveShoppingList.setOnClickListener {
             if (!_viewDateBinding.edittextName.text.isNullOrBlank()) {
-                _createShoppingListViewModel.createShoppingList()
+                _manageShoppingListViewModel.createShoppingList()
             } else {
                 showValidationError()
             }
@@ -138,7 +139,7 @@ class CreateShoppingListFragment : Fragment(), DatePickerDialog.OnDateSetListene
             calendar.set(Calendar.MONTH, month)
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
             _viewDateBinding.edittextDate.setText(calendar.time.toBrazilString())
-            _createShoppingListViewModel.shoppingList.value?.date = calendar.time
+            _manageShoppingListViewModel.shoppingList.value?.date = calendar.time
         }
     }
 
