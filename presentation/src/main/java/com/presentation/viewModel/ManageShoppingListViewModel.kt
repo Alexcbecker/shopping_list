@@ -89,10 +89,6 @@ class ManageShoppingListViewModel(
         }
     }
 
-    private fun editGroceryItemsOfTheShoppingList() {
-
-    }
-
     fun setShoppingListValue(shoppingListBinding: ShoppingListBinding?) {
         shoppingListBinding?.let {
             isEditing = true

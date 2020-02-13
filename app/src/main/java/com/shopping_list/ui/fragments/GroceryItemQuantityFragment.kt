@@ -26,6 +26,7 @@ class GroceryItemQuantityFragment : Fragment() {
             lifecycleOwner = this@GroceryItemQuantityFragment.viewLifecycleOwner
             viewModel = this@GroceryItemQuantityFragment._manageShoppingListViewModel
             setupListeners()
+            _viewDateBinding.edittextGroceryItemQuantity.requestFocus()
         }
         return _viewDateBinding.root
     }
