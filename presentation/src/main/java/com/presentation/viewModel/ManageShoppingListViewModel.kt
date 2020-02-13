@@ -4,7 +4,9 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.domain.usecase.AddItemsToShoppingListUseCase
 import com.domain.usecase.CreateShoppingListUseCase
+import com.domain.usecase.DeleteGroceryItemUseCase
 import com.domain.usecase.EditShoppingListUseCase
 import com.presentation.Event
 import com.presentation.GroceryItemBinding
@@ -12,10 +14,13 @@ import com.presentation.ShoppingListBinding
 import com.presentation.mapper.toDomain
 import timber.log.Timber
 
+@Suppress("IMPLICIT_CAST_TO_ANY")
 class ManageShoppingListViewModel(
     application: Application,
     private val createShoppingListUseCase: CreateShoppingListUseCase,
-    private val editShoppingListUseCase: EditShoppingListUseCase
+    private val addItemsToShoppingListUseCase: AddItemsToShoppingListUseCase,
+    private val editShoppingListUseCase: EditShoppingListUseCase,
+    private val deleteGroceryItemUseCase: DeleteGroceryItemUseCase
 ) : AndroidViewModel(application) {
 
     private val _shoppingList = MutableLiveData<ShoppingListBinding>()
@@ -42,15 +47,33 @@ class ManageShoppingListViewModel(
         _shoppingList.value?.let { shoppingList ->
             createShoppingListUseCase.execute(
                 CreateShoppingListUseCase.Params(shoppingList.toDomain()),
-                {
-                    clearData()
-                    _successEvent.value = Event(Unit)
+                { shoppingListId ->
+                    if (_shoppingList.value?.items != null) {
+                        addItemsToShoppingList(shoppingListId)
+                    } else {
+                        clearData()
+                        _successEvent.value = Event(Unit)
+                    }
                 },
                 {
                     Timber.d(it)
                 }
             )
         }
+    }
+
+    private fun addItemsToShoppingList(id: Long) {
+        _shoppingList.value?.id = id.toString()
+        addItemsToShoppingListUseCase.execute(
+            AddItemsToShoppingListUseCase.Params(_shoppingList.value!!.toDomain()),
+            {
+                clearData()
+                _successEvent.value = Event(Unit)
+            },
+            {
+                Timber.d(it)
+            }
+        )
     }
 
     private fun editShoppingList() {
@@ -63,6 +86,22 @@ class ManageShoppingListViewModel(
                 },
                 {
                     Timber.d(it)
+                }
+            )
+        }
+    }
+
+    fun deleteGroceryItem(groceryItemBinding: GroceryItemBinding) {
+        if (isEditing) {
+            deleteGroceryItemUseCase.execute(
+                DeleteGroceryItemUseCase.Params(groceryItemBinding.toDomain(), _shoppingList.value!!.id!!.toInt()),
+                {
+                    Timber.i("Removed grocery item with id = ${groceryItemBinding.id}")
+                },
+                {
+                    Timber.d(
+                        it
+                    )
                 }
             )
         }
@@ -82,7 +121,10 @@ class ManageShoppingListViewModel(
     fun addGroceryItemToShoppingList() {
         _groceryItem.value?.let {
             if (_shoppingList.value!!.items.any { item -> item.id == it.id }) {
-                (_shoppingList.value?.items as MutableList).set(_shoppingList.value?.items!!.indexOfFirst { item -> item.id == it.id }, it)
+                (_shoppingList.value?.items as MutableList).set(
+                    _shoppingList.value?.items!!.indexOfFirst { item -> item.id == it.id },
+                    it
+                )
             } else {
                 (_shoppingList.value?.items as MutableList).add(it)
             }
@@ -97,5 +139,8 @@ class ManageShoppingListViewModel(
     override fun onCleared() {
         super.onCleared()
         createShoppingListUseCase.dispose()
+        editShoppingListUseCase.dispose()
+        addItemsToShoppingListUseCase.dispose()
+        deleteGroceryItemUseCase.dispose()
     }
 }

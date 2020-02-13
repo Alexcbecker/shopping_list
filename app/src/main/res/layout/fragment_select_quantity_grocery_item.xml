@@ -6,8 +6,11 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_layout_fragment_select_quantity"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:focusable="true">
 
         <FrameLayout
                 android:id="@+id/frame_layout_helper_text"
@@ -97,7 +100,7 @@
                 app:layout_constraintWidth_percent="0.8"
                 android:layout_marginTop="16dp"
                 android:backgroundTint="@color/colorAccent"
-                android:text="@string/create_shopping_list_save"
+                android:text="@string/manage_shopping_list_save"
                 android:textColor="@android:color/white"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout_grocery_item_quantity"
                 app:layout_constraintEnd_toEndOf="parent"

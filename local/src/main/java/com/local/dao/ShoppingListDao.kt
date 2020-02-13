@@ -6,12 +6,13 @@ import com.local.entity.ShoppingList
 import com.local.entity.ShoppingListWithGroceryItems
 import io.reactivex.Completable
 import io.reactivex.Observable
+import io.reactivex.Single
 
 @Dao
 interface ShoppingListDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(shoppingList: ShoppingList): Completable
+    fun insert(shoppingList: ShoppingList): Single<Long>
 
     @Update
     fun edit(shoppingList: ShoppingList): Completable

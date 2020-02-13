@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.presentation.viewModel.ManageShoppingListViewModel
 import com.shopping_list.R
 import com.shopping_list.databinding.FragmentSelectQuantityGroceryItemBinding
+import com.shopping_list.ui.extensions.hideKeyboard
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class GroceryItemQuantityFragment : Fragment() {
@@ -26,20 +27,22 @@ class GroceryItemQuantityFragment : Fragment() {
             lifecycleOwner = this@GroceryItemQuantityFragment.viewLifecycleOwner
             viewModel = this@GroceryItemQuantityFragment._manageShoppingListViewModel
             setupListeners()
+            _viewDateBinding.edittextGroceryItemQuantity.requestFocus()
         }
         return _viewDateBinding.root
     }
 
     private fun setupListeners() {
         _viewDateBinding.buttonAddGroceryItem.setOnClickListener {
-            _viewDateBinding.frameLayoutHelperText.requestFocus()
+            activity?.hideKeyboard()
+            _viewDateBinding.edittextGroceryItemQuantity.clearFocus()
+            _viewDateBinding.constraintLayoutFragmentSelectQuantity.requestFocus()
             val viewText = _viewDateBinding.edittextGroceryItemQuantity.text.toString()
             if (viewText.isBlank() || viewText.equals("0")) {
                 showValidationError()
             } else {
                 _manageShoppingListViewModel.addGroceryItemToShoppingList()
                 findNavController().popBackStack(R.id.manageShoppingListFragment, false)
-
             }
         }
 

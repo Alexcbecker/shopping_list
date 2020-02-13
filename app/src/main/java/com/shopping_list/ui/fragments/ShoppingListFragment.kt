@@ -17,6 +17,7 @@ import com.shopping_list.databinding.FragmentShoppingListBinding
 import com.shopping_list.ui.OnItemClickListener
 import com.shopping_list.ui.adapter.ShoppingListAdapter
 import com.shopping_list.ui.fragments.ManageShoppingListFragment.Companion.ARG_SHOPPING_LIST
+import kotlinx.android.synthetic.main.fragment_shopping_list.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ShoppingListFragment : Fragment() {
@@ -59,8 +60,10 @@ class ShoppingListFragment : Fragment() {
         adapter.submitList(pagedNoteList)
         if (pagedNoteList.isEmpty()) {
             recyclerView.visibility = View.GONE
+            textView_shopping_list_empty_message.visibility = View.VISIBLE
         } else {
             recyclerView.visibility = View.VISIBLE
+            textView_shopping_list_empty_message.visibility = View.GONE
         }
     }
 
