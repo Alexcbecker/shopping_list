@@ -38,9 +38,16 @@ class ShoppingListLocalDataSource(
         val shoppingListWithGroceryItems = shoppingList.fromDomain()
         val editGroceries = Observable.fromIterable(shoppingListWithGroceryItems.groceryItemList)
             .concatMapCompletable {
-                groceryItemDao.update(it)
+                groceryItemDao.insert(it)
             }
+
+        val deleteGroceries = Observable.fromIterable(shoppingListWithGroceryItems.groceryItemList)
+            .concatMapCompletable {
+                groceryItemDao.delete(it.id.toLong(), it.shoppingListId!!.toLong())
+            }
+
         return shoppingListDao.edit(shoppingListWithGroceryItems.shoppingList)
+            //.andThen(deleteGroceries)
             .andThen(editGroceries)
     }
 

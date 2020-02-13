@@ -6,7 +6,7 @@ import java.math.BigInteger
 
 @Entity
 data class GroceryItem(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     val id: Int,
     var shoppingListId: Int? = null,
     val name: String,

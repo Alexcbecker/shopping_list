@@ -13,6 +13,7 @@ import com.presentation.ShoppingListBinding
 import com.presentation.mapper.toDomain
 import timber.log.Timber
 
+@Suppress("IMPLICIT_CAST_TO_ANY")
 class ManageShoppingListViewModel(
     application: Application,
     private val createShoppingListUseCase: CreateShoppingListUseCase,
@@ -86,6 +87,10 @@ class ManageShoppingListViewModel(
                 }
             )
         }
+    }
+
+    private fun editGroceryItemsOfTheShoppingList() {
+
     }
 
     fun setShoppingListValue(shoppingListBinding: ShoppingListBinding?) {
