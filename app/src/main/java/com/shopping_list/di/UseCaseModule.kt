@@ -14,6 +14,10 @@ val useCaseModule = module {
     }
 
     single {
+        AddItemsToShoppingListUseCase(get(), get())
+    }
+
+    single {
         DeleteShoppingListUseCase(get(), get())
     }
 

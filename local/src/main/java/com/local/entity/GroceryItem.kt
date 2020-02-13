@@ -8,7 +8,7 @@ import java.math.BigInteger
 data class GroceryItem(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val shoppingListId: Int? = null,
+    var shoppingListId: Int? = null,
     val name: String,
     val price: BigInteger,
     val quantity: Int

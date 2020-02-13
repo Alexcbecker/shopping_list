@@ -6,5 +6,5 @@ data class ShoppingList(
     val id: Int? = null,
     val date: Date = Date(),
     val name: String,
-    val items :List<GroceryItem>? = null
+    var items :List<GroceryItem>? = null
 )

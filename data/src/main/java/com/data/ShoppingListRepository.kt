@@ -4,6 +4,8 @@ import androidx.paging.DataSource
 import com.domain.ShoppingList
 import com.domain.repository.IShoppingListRepository
 import io.reactivex.Completable
+import io.reactivex.Observable
+import io.reactivex.Single
 
 class ShoppingListRepository(private val shoppingListLocalDataSource: IShoppingListLocalDataSource) :
     IShoppingListRepository {
@@ -12,8 +14,12 @@ class ShoppingListRepository(private val shoppingListLocalDataSource: IShoppingL
         return shoppingListLocalDataSource.getAllShoppingLists()
     }
 
-    override fun createShoppingList(shoppingList: ShoppingList): Completable {
+    override fun createShoppingList(shoppingList: ShoppingList): Single<Long> {
         return shoppingListLocalDataSource.createShoppingList(shoppingList)
+    }
+
+    override fun addItemsToShoppingList(shoppingList: ShoppingList): Completable {
+        return shoppingListLocalDataSource.addItemsToShoppingList(shoppingList)
     }
 
     override fun editShoppingList(shoppingList: ShoppingList): Completable {

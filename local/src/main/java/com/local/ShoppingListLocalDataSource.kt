@@ -9,25 +9,29 @@ import com.local.mapper.fromDomain
 import com.local.mapper.toDomain
 import io.reactivex.Completable
 import io.reactivex.Observable
+import io.reactivex.Single
 
 class ShoppingListLocalDataSource(
     private val shoppingListDao: ShoppingListDao,
     private val groceryItemDao: GroceryItemDao
 ) : IShoppingListLocalDataSource {
 
-
     override fun getAllShoppingLists(): DataSource.Factory<Int, ShoppingList> {
         return shoppingListDao.findAll().map { it.toDomain() }
     }
 
-    override fun createShoppingList(shoppingList: ShoppingList): Completable {
+    override fun createShoppingList(shoppingList: ShoppingList): Single<Long> {
         val shoppingListWithGroceryItems = shoppingList.fromDomain()
-        val saveGroceries = Observable.fromIterable(shoppingListWithGroceryItems.groceryItemList)
+        return shoppingListDao.insert(shoppingListWithGroceryItems.shoppingList)
+    }
+
+    override fun addItemsToShoppingList(shoppingList: ShoppingList): Completable {
+        val shoppingListWithGroceryItems = shoppingList.fromDomain()
+        shoppingListWithGroceryItems.groceryItemList?.map { it.shoppingListId = shoppingList.id }
+        return Observable.fromIterable(shoppingListWithGroceryItems.groceryItemList)
             .concatMapCompletable {
                 groceryItemDao.insert(it)
             }
-        return shoppingListDao.insert(shoppingListWithGroceryItems.shoppingList)
-            .andThen(saveGroceries)
     }
 
     override fun editShoppingList(shoppingList: ShoppingList): Completable {
