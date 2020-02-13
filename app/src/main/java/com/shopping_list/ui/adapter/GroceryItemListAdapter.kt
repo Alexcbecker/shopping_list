@@ -10,8 +10,10 @@ import com.shopping_list.ui.OnItemClickListener
 import com.shopping_list.ui.holder.GroceryItemListViewHolder
 import kotlinx.android.synthetic.main.item_shopping_list_grocery_item.view.*
 
-class GroceryItemListAdapter(private val onItemClickListener: OnItemClickListener<GroceryItemBinding>,
-                             private val onDeleteClickListener: OnItemClickListener<GroceryItemBinding>) :
+class GroceryItemListAdapter(
+    private val onItemClickListener: OnItemClickListener<GroceryItemBinding>,
+    private val onDeleteClickListener: OnItemClickListener<GroceryItemBinding>
+) :
     RecyclerView.Adapter<GroceryItemListViewHolder>() {
 
     private var _groceryItemsList: List<GroceryItemBinding> = emptyList()
