@@ -11,7 +11,7 @@ import org.koin.dsl.module
 val presentationModule = module {
 
     viewModel {
-        ManageShoppingListViewModel(androidApplication(), get(), get(), get())
+        ManageShoppingListViewModel(androidApplication(), get(), get(), get(), get())
     }
 
     viewModel {

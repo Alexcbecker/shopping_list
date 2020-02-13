@@ -10,7 +10,8 @@ import com.shopping_list.ui.OnItemClickListener
 import com.shopping_list.ui.holder.GroceryItemListViewHolder
 import kotlinx.android.synthetic.main.item_shopping_list_grocery_item.view.*
 
-class GroceryItemListAdapter(private val onItemClickListener: OnItemClickListener<GroceryItemBinding>) :
+class GroceryItemListAdapter(private val onItemClickListener: OnItemClickListener<GroceryItemBinding>,
+                             private val onDeleteClickListener: OnItemClickListener<GroceryItemBinding>) :
     RecyclerView.Adapter<GroceryItemListViewHolder>() {
 
     private var _groceryItemsList: List<GroceryItemBinding> = emptyList()
@@ -34,6 +35,7 @@ class GroceryItemListAdapter(private val onItemClickListener: OnItemClickListene
         val groceryItem = _groceryItemsList[position]
         holder.bind(groceryItem)
         holder.itemView.view_remove_item.setOnClickListener {
+            onDeleteClickListener.onItemClick(groceryItem)
             (_groceryItemsList as MutableList).removeAt(position)
             notifyDataSetChanged()
         }

@@ -1,6 +1,7 @@
 package com.data
 
 import androidx.paging.DataSource
+import com.domain.GroceryItem
 import com.domain.ShoppingList
 import io.reactivex.Completable
 import io.reactivex.Observable
@@ -12,5 +13,6 @@ interface IShoppingListLocalDataSource {
     fun createShoppingList(shoppingList: ShoppingList): Single<Long>
     fun addItemsToShoppingList(shoppingList: ShoppingList): Completable
     fun editShoppingList(shoppingList: ShoppingList): Completable
+    fun removeGroceryItemOfShoppingList(groceryItem: GroceryItem, shoppingListId: Int): Completable
     fun deleteShoppingList(id: String): Completable
 }

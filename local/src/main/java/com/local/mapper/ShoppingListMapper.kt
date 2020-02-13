@@ -40,3 +40,13 @@ fun ShoppingList.fromDomain(): ShoppingListWithGroceryItems {
         }
     )
 }
+
+fun GroceryItem.fromDomain(shoppingListId: Int): GroceryItemEntity {
+    return GroceryItemEntity(
+        id = this.id ?: 0,
+        shoppingListId = shoppingListId,
+        name = this.name,
+        price = this.price,
+        quantity = this.quantity
+    )
+}

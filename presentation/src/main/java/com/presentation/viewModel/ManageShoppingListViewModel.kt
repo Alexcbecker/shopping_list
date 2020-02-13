@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.domain.usecase.AddItemsToShoppingListUseCase
 import com.domain.usecase.CreateShoppingListUseCase
+import com.domain.usecase.DeleteGroceryItemUseCase
 import com.domain.usecase.EditShoppingListUseCase
 import com.presentation.Event
 import com.presentation.GroceryItemBinding
@@ -18,7 +19,8 @@ class ManageShoppingListViewModel(
     application: Application,
     private val createShoppingListUseCase: CreateShoppingListUseCase,
     private val addItemsToShoppingListUseCase: AddItemsToShoppingListUseCase,
-    private val editShoppingListUseCase: EditShoppingListUseCase
+    private val editShoppingListUseCase: EditShoppingListUseCase,
+    private val deleteGroceryItemUseCase: DeleteGroceryItemUseCase
 ) : AndroidViewModel(application) {
 
     private val _shoppingList = MutableLiveData<ShoppingListBinding>()
@@ -89,6 +91,22 @@ class ManageShoppingListViewModel(
         }
     }
 
+    fun deleteGroceryItem(groceryItemBinding: GroceryItemBinding) {
+        if (isEditing) {
+            deleteGroceryItemUseCase.execute(
+                DeleteGroceryItemUseCase.Params(groceryItemBinding.toDomain(), _shoppingList.value!!.id!!.toInt()),
+                {
+                    Timber.i("Removed grocery item with id = ${groceryItemBinding.id}")
+                },
+                {
+                    Timber.d(
+                        it
+                    )
+                }
+            )
+        }
+    }
+
     fun setShoppingListValue(shoppingListBinding: ShoppingListBinding?) {
         shoppingListBinding?.let {
             isEditing = true
@@ -123,5 +141,6 @@ class ManageShoppingListViewModel(
         createShoppingListUseCase.dispose()
         editShoppingListUseCase.dispose()
         addItemsToShoppingListUseCase.dispose()
+        deleteGroceryItemUseCase.dispose()
     }
 }

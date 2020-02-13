@@ -2,6 +2,7 @@ package com.local
 
 import androidx.paging.DataSource
 import com.data.IShoppingListLocalDataSource
+import com.domain.GroceryItem
 import com.domain.ShoppingList
 import com.local.dao.GroceryItemDao
 import com.local.dao.ShoppingListDao
@@ -41,14 +42,13 @@ class ShoppingListLocalDataSource(
                 groceryItemDao.insert(it)
             }
 
-        val deleteGroceries = Observable.fromIterable(shoppingListWithGroceryItems.groceryItemList)
-            .concatMapCompletable {
-                groceryItemDao.delete(it.id.toLong(), it.shoppingListId!!.toLong())
-            }
-
         return shoppingListDao.edit(shoppingListWithGroceryItems.shoppingList)
-            //.andThen(deleteGroceries)
             .andThen(editGroceries)
+    }
+
+    override fun removeGroceryItemOfShoppingList(groceryItem: GroceryItem, shoppingListId: Int): Completable {
+        val groceryItemEntity = groceryItem.fromDomain(shoppingListId)
+        return groceryItemDao.delete(groceryItemEntity.id.toLong(), groceryItemEntity.shoppingListId!!.toLong())
     }
 
     override fun deleteShoppingList(id: String): Completable {

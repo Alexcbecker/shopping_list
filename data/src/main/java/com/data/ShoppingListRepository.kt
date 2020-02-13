@@ -1,6 +1,7 @@
 package com.data
 
 import androidx.paging.DataSource
+import com.domain.GroceryItem
 import com.domain.ShoppingList
 import com.domain.repository.IShoppingListRepository
 import io.reactivex.Completable
@@ -28,5 +29,9 @@ class ShoppingListRepository(private val shoppingListLocalDataSource: IShoppingL
 
     override fun deleteShoppingList(id: String): Completable {
         return shoppingListLocalDataSource.deleteShoppingList(id)
+    }
+
+    override fun removeGroceryItemOfShoppingList(groceryItem: GroceryItem, shoppingLIstId: Int): Completable {
+        return shoppingListLocalDataSource.removeGroceryItemOfShoppingList(groceryItem, shoppingLIstId)
     }
 }

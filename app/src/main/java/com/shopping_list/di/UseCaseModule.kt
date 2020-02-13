@@ -28,4 +28,8 @@ val useCaseModule = module {
     single {
         GetGroceryItemsListUseCase(get(), get())
     }
+
+    single {
+        DeleteGroceryItemUseCase(get(), get())
+    }
 }

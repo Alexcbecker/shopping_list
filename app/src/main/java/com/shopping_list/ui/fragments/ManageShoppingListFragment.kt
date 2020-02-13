@@ -39,8 +39,13 @@ class ManageShoppingListFragment : Fragment(), DatePickerDialog.OnDateSetListene
             findNavController().navigate(R.id.action_manageShoppingListFragment_to_groceryItemsQuantityFragment)
         }
     }
+    private val onDeleteClickListener = object : OnItemClickListener<GroceryItemBinding> {
+        override fun onItemClick(data: GroceryItemBinding) {
+            _manageShoppingListViewModel.deleteGroceryItem(data)
+        }
+    }
     private val _groceryItemsAdapter by lazy {
-        GroceryItemListAdapter(onItemClickListener)
+        GroceryItemListAdapter(onItemClickListener, onDeleteClickListener)
     }
     private val calendar = Calendar.getInstance()
     private var shoppingListBinding: ShoppingListBinding? = null
