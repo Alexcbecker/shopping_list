@@ -21,8 +21,12 @@
             android:label="@string/create_shopping_list_label"
             tools:layout="@layout/fragment_create_shopping_list">
         <action
-                android:id="@+id/action_createShoppingListFragment_to_groceryItemsListFragment"
+                android:id="@+id/action_manageShoppingListFragment_to_groceryItemsListFragment"
                 app:destination="@id/groceryItemsListFragment"/>
+
+        <action
+                android:id="@+id/action_manageShoppingListFragment_to_groceryItemsQuantityFragment"
+                app:destination="@id/groceryItemsQuantityFragment"/>
     </fragment>
 
     <fragment

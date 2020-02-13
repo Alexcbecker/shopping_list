@@ -5,17 +5,20 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.view.*
 import android.widget.DatePicker
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.presentation.GroceryItemBinding
 import com.presentation.ShoppingListBinding
 import com.presentation.extension.toBrazilString
 import com.presentation.viewModel.ManageShoppingListViewModel
 import com.presentation.viewModel.DeleteShoppingListViewModel
 import com.shopping_list.R
 import com.shopping_list.databinding.FragmentCreateShoppingListBinding
+import com.shopping_list.ui.OnItemClickListener
 import com.shopping_list.ui.adapter.GroceryItemListAdapter
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -29,10 +32,15 @@ class ManageShoppingListFragment : Fragment(), DatePickerDialog.OnDateSetListene
             R.id.nav_main
         )
     })
-
     private val _deleteShoppingListViewModel by viewModel<DeleteShoppingListViewModel>()
+    private val onItemClickListener = object : OnItemClickListener<GroceryItemBinding> {
+        override fun onItemClick(data: GroceryItemBinding) {
+            _manageShoppingListViewModel.setGroceryItemValue(data)
+            findNavController().navigate(R.id.action_manageShoppingListFragment_to_groceryItemsQuantityFragment)
+        }
+    }
     private val _groceryItemsAdapter by lazy {
-        GroceryItemListAdapter()
+        GroceryItemListAdapter(onItemClickListener)
     }
     private val calendar = Calendar.getInstance()
     private var shoppingListBinding: ShoppingListBinding? = null
@@ -42,8 +50,10 @@ class ManageShoppingListFragment : Fragment(), DatePickerDialog.OnDateSetListene
         arguments?.let {
             shoppingListBinding = it.getSerializable(ARG_SHOPPING_LIST) as ShoppingListBinding
             _manageShoppingListViewModel.setShoppingListValue(shoppingListBinding)
+            _manageShoppingListViewModel.isEditing = true
         }
         setHasOptionsMenu(true)
+        setupBackButtonEvent()
     }
 
 
@@ -75,14 +85,33 @@ class ManageShoppingListFragment : Fragment(), DatePickerDialog.OnDateSetListene
     }
 
     private fun init() {
+        shoppingListBinding?.let {
+            _viewDateBinding.edittextDate.setText(shoppingListBinding?.dateFormatted)
+        }
         subscribeToSuccessEvent()
         setupRecyclerView()
         setupListeners()
     }
 
+    private fun setupBackButtonEvent() {
+        requireActivity()
+            .onBackPressedDispatcher
+            .addCallback(this, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    _manageShoppingListViewModel.clearData()
+                    if (isEnabled) {
+                        isEnabled = false
+                        requireActivity().onBackPressed()
+                    }
+                }
+            }
+            )
+    }
+
     private fun subscribeToSuccessEvent() {
         _manageShoppingListViewModel.successEvent.observe(this, Observer {
             it.getContentIfNotHandled()?.let {
+                activity?.viewModelStore?.clear()
                 findNavController().popBackStack()
             }
         })
@@ -102,7 +131,7 @@ class ManageShoppingListFragment : Fragment(), DatePickerDialog.OnDateSetListene
 
     private fun setupListeners() {
         _viewDateBinding.fabCreateAddGroceryItem.setOnClickListener {
-            findNavController().navigate(R.id.action_createShoppingListFragment_to_groceryItemsListFragment)
+            findNavController().navigate(R.id.action_manageShoppingListFragment_to_groceryItemsListFragment)
         }
 
         _viewDateBinding.viewCalendar.setOnClickListener {
@@ -110,8 +139,8 @@ class ManageShoppingListFragment : Fragment(), DatePickerDialog.OnDateSetListene
         }
 
         _viewDateBinding.buttonSaveShoppingList.setOnClickListener {
-            if (!_viewDateBinding.edittextName.text.isNullOrBlank()) {
-                _manageShoppingListViewModel.createShoppingList()
+            if (isValidName()) {
+                _manageShoppingListViewModel.dispatchEvent()
             } else {
                 showValidationError()
             }
@@ -142,6 +171,8 @@ class ManageShoppingListFragment : Fragment(), DatePickerDialog.OnDateSetListene
             _manageShoppingListViewModel.shoppingList.value?.date = calendar.time
         }
     }
+
+    private fun isValidName(): Boolean = !_viewDateBinding.edittextName.text.isNullOrBlank()
 
     private fun showValidationError() {
         _viewDateBinding.textInputLayoutName.isErrorEnabled = true
