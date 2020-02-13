@@ -2,7 +2,7 @@ package com.shopping_list
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
-import com.shopping_list.di.androidModule
+import com.shopping_list.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
@@ -14,9 +14,18 @@ class AndroidApplication : Application() {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         startKoin {
             androidContext(this@AndroidApplication)
-            modules(listOf(
-                androidModule
-            ))
+            modules(
+                listOf(
+                    androidModule,
+                    componentModule,
+                    serviceModule,
+                    repositoryModule,
+                    useCaseModule,
+                    dataSourceModule,
+                    persistenceModule,
+                    presentationModule
+                )
+            )
         }
         configTimber()
     }

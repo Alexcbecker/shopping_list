@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="6dp"
+            android:layout_margin="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <View
+                    android:id="@+id/view_decoration"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintWidth_percent="0.6"
+                    android:background="@color/colorPrimaryDark"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <View
+                    android:id="@+id/view_icon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/ic_shopping_cart"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView_shopping_list_name"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_shopping_list_date"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textView_shopping_list_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Nome da lista"
+                    android:textColor="@android:color/white"
+                    android:paddingStart="6dp"
+                    android:paddingEnd="16dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toEndOf="@+id/view_icon"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textView_shopping_list_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="6dp"
+                    android:paddingEnd="16dp"
+                    android:textColor="@android:color/white"
+                    android:layout_marginBottom="8dp"
+                    tools:text="12/02/2020"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_shopping_list_name"
+                    app:layout_constraintStart_toEndOf="@+id/view_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textView_shopping_list_items_quantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="6dp"
+                    android:paddingEnd="16dp"
+                    tools:text="15 itens" app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_shopping_list_date"
+                    app:layout_constraintTop_toTopOf="@+id/textView_shopping_list_name"
+                    app:layout_constraintStart_toEndOf="@+id/view_decoration"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -27,6 +27,7 @@ android {
             applicationIdSuffix ".debug"
             versionNameSuffix "-DEBUG"
             signingConfig android.signingConfigs.debug
+            buildConfigField("String", "BASE_URL", "\"some.url.here.com/\"")
         }
     }
     compileOptions {
@@ -49,6 +50,7 @@ android {
 }
 dependencies {
     implementation project(":domain")
+    implementation project(":remote")
     implementation project(":presentation")
     implementation project(":data")
     implementation project(":local")
@@ -60,6 +62,7 @@ dependencies {
     implementation appDependencies.coreKtx
     implementation appDependencies.constraintLayout
     implementation appDependencies.materialDesign
+    implementation appDependencies.paging
     implementation appDependencies.lifecycle
     kapt appDependencies.lifecycleCompiler
     implementation appDependencies.navigationRuntime
@@ -72,6 +75,12 @@ dependencies {
     implementation appDependencies.koinScope
     implementation appDependencies.koinViewmodel
     implementation appDependencies.rxAndroid
+    implementation appDependencies.okHttp
+    implementation appDependencies.okHttpLoggingInterceptor
+    implementation appDependencies.retrofit
+    implementation appDependencies.retrofitRxJavaAdapter
+    implementation appDependencies.retrofitConvertGson
+    implementation appDependencies.gson
     implementation localDependencies.room
     implementation localDependencies.rxRoom
 
