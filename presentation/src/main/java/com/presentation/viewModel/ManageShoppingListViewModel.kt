@@ -5,15 +5,17 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.domain.usecase.CreateShoppingListUseCase
+import com.domain.usecase.EditShoppingListUseCase
 import com.presentation.Event
 import com.presentation.GroceryItemBinding
 import com.presentation.ShoppingListBinding
 import com.presentation.mapper.toDomain
 import timber.log.Timber
 
-class CreateShoppingListViewModel(
+class ManageShoppingListViewModel(
     application: Application,
-    private val createShoppingListUseCase: CreateShoppingListUseCase
+    private val createShoppingListUseCase: CreateShoppingListUseCase,
+    private val editShoppingListUseCase: EditShoppingListUseCase
 ) : AndroidViewModel(application) {
 
     private val _shoppingList = MutableLiveData<ShoppingListBinding>()
@@ -29,11 +31,19 @@ class CreateShoppingListViewModel(
     val successEvent: LiveData<Event<Unit>>
         get() = _successEvent
 
-    fun createShoppingList() {
+    var isEditing = false
+
+    fun dispatchEvent() {
+        if (isEditing) editShoppingList()
+        else createShoppingList()
+    }
+
+    private fun createShoppingList() {
         _shoppingList.value?.let { shoppingList ->
             createShoppingListUseCase.execute(
                 CreateShoppingListUseCase.Params(shoppingList.toDomain()),
                 {
+                    clearData()
                     _successEvent.value = Event(Unit)
                 },
                 {
@@ -43,16 +53,45 @@ class CreateShoppingListViewModel(
         }
     }
 
+    private fun editShoppingList() {
+        _shoppingList.value?.let { shoppingList ->
+            editShoppingListUseCase.execute(
+                EditShoppingListUseCase.Params(shoppingList.toDomain()),
+                {
+                    clearData()
+                    _successEvent.value = Event(Unit)
+                },
+                {
+                    Timber.d(it)
+                }
+            )
+        }
+    }
+
+    fun setShoppingListValue(shoppingListBinding: ShoppingListBinding?) {
+        shoppingListBinding?.let {
+            isEditing = true
+            _shoppingList.value = shoppingListBinding
+        }
+    }
+
     fun setGroceryItemValue(groceryItemBinding: GroceryItemBinding) {
         _groceryItem.value = groceryItemBinding
     }
 
     fun addGroceryItemToShoppingList() {
         _groceryItem.value?.let {
-            if (_shoppingList.value!!.items.filter { item -> item.id == it.id }.isEmpty()) {
+            if (_shoppingList.value!!.items.any { item -> item.id == it.id }) {
+                (_shoppingList.value?.items as MutableList).set(_shoppingList.value?.items!!.indexOfFirst { item -> item.id == it.id }, it)
+            } else {
                 (_shoppingList.value?.items as MutableList).add(it)
             }
         }
+    }
+
+    fun clearData() {
+        _shoppingList.value = ShoppingListBinding()
+        isEditing = false
     }
 
     override fun onCleared() {

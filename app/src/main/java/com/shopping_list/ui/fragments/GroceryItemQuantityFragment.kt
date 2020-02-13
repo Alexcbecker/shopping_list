@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.presentation.viewModel.CreateShoppingListViewModel
+import com.presentation.viewModel.ManageShoppingListViewModel
 import com.shopping_list.R
 import com.shopping_list.databinding.FragmentSelectQuantityGroceryItemBinding
 import org.koin.android.viewmodel.ext.android.sharedViewModel
@@ -14,7 +14,7 @@ import org.koin.android.viewmodel.ext.android.sharedViewModel
 class GroceryItemQuantityFragment : Fragment() {
 
     private lateinit var _viewDateBinding: FragmentSelectQuantityGroceryItemBinding
-    private val _createShoppingListViewModel: CreateShoppingListViewModel by sharedViewModel(from = {
+    private val _manageShoppingListViewModel: ManageShoppingListViewModel by sharedViewModel(from = {
         findNavController().getViewModelStoreOwner(
             R.id.nav_main
         )
@@ -24,7 +24,7 @@ class GroceryItemQuantityFragment : Fragment() {
         _viewDateBinding = FragmentSelectQuantityGroceryItemBinding.inflate(inflater, container, false)
         _viewDateBinding.run {
             lifecycleOwner = this@GroceryItemQuantityFragment.viewLifecycleOwner
-            viewModel = this@GroceryItemQuantityFragment._createShoppingListViewModel
+            viewModel = this@GroceryItemQuantityFragment._manageShoppingListViewModel
             setupListeners()
         }
         return _viewDateBinding.root
@@ -37,8 +37,8 @@ class GroceryItemQuantityFragment : Fragment() {
             if (viewText.isBlank() || viewText.equals("0")) {
                 showValidationError()
             } else {
-                _createShoppingListViewModel.addGroceryItemToShoppingList()
-                findNavController().popBackStack(R.id.createShoppingListFragment, false)
+                _manageShoppingListViewModel.addGroceryItemToShoppingList()
+                findNavController().popBackStack(R.id.manageShoppingListFragment, false)
 
             }
         }

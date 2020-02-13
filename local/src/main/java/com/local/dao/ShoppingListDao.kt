@@ -21,6 +21,5 @@ interface ShoppingListDao {
 
     @Query("SELECT * FROM ShoppingList ORDER BY date DESC")
     @Transaction
-    //fun findAll(): Observable<List<ShoppingListWithGroceryItems>>
     fun findAll(): DataSource.Factory<Int, ShoppingListWithGroceryItems>
 }

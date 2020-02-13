@@ -7,7 +7,7 @@
 
         <variable
                 name="viewModel"
-                type="com.presentation.viewModel.CreateShoppingListViewModel"/>
+                type="com.presentation.viewModel.ManageShoppingListViewModel"/>
     </data>
 
     <androidx.core.widget.NestedScrollView

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -17,7 +16,7 @@ import com.shopping_list.R
 import com.shopping_list.databinding.FragmentShoppingListBinding
 import com.shopping_list.ui.OnItemClickListener
 import com.shopping_list.ui.adapter.ShoppingListAdapter
-import com.shopping_list.ui.fragments.CreateShoppingListFragment.Companion.ARG_SHOPPING_LIST
+import com.shopping_list.ui.fragments.ManageShoppingListFragment.Companion.ARG_SHOPPING_LIST
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ShoppingListFragment : Fragment() {
@@ -28,7 +27,7 @@ class ShoppingListFragment : Fragment() {
         : OnItemClickListener<ShoppingListBinding> {
         override fun onItemClick(data: ShoppingListBinding) {
             val bundle = bundleOf(ARG_SHOPPING_LIST to data)
-            findNavController().navigate(R.id.action_shoppingListFragment_to_createShoppingListFragment, bundle)
+            findNavController().navigate(R.id.action_shoppingListFragment_to_manageShoppingListFragment, bundle)
         }
     }
     private val adapter = ShoppingListAdapter(onItemClickListener)
@@ -49,7 +48,7 @@ class ShoppingListFragment : Fragment() {
         })
 
         _viewDateBinding.fabCreateShoppingList.setOnClickListener {
-            findNavController().navigate(R.id.action_shoppingListFragment_to_createShoppingListFragment)
+            findNavController().navigate(R.id.action_shoppingListFragment_to_manageShoppingListFragment)
         }
 
         setupRecyclerView()
